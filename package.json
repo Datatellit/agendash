@@ -1,66 +1,83 @@
 {
-  "name": "agendash",
-  "version": "1.0.0",
-  "description": "Agenda Dashboard",
-  "main": "app.js",
-  "bin": "bin/agendash-standalone.js",
-  "engines": {
-    "node": ">=8.9.0"
-  },
-  "scripts": {
-    "test": "run-p lint ava",
-    "lint": "xo",
-    "ava": "ava -v -c 1"
-  },
-  "keywords": [
-    "agenda"
+  "_args": [
+    [
+      "agendash@0.4.0",
+      "F:\\Work\\Dev-Service\\Dtit-Service-Rule"
+    ]
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/agenda/agendash.git"
+  "_from": "agendash@0.4.0",
+  "_id": "agendash@0.4.0",
+  "_inBundle": false,
+  "_integrity": "sha1-E2Umz6FmT20tV9oPz9umWxxhl04=",
+  "_location": "/agendash",
+  "_phantomChildren": {
+    "bson": "1.0.9",
+    "buffer-shims": "1.0.0",
+    "core-util-is": "1.0.2",
+    "date.js": "0.3.3",
+    "es6-promise": "3.2.1",
+    "human-interval": "0.1.6",
+    "inherits": "2.0.3",
+    "isarray": "1.0.0",
+    "moment-timezone": "0.5.13",
+    "ms": "2.0.0",
+    "process-nextick-args": "1.0.7",
+    "require_optional": "1.0.1",
+    "string_decoder": "1.0.3",
+    "util-deprecate": "1.0.2"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "agendash@0.4.0",
+    "name": "agendash",
+    "escapedName": "agendash",
+    "rawSpec": "0.4.0",
+    "saveSpec": null,
+    "fetchSpec": "0.4.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "http://registry.npm.taobao.org/agendash/download/agendash-0.4.0.tgz",
+  "_spec": "0.4.0",
+  "_where": "F:\\Work\\Dev-Service\\Dtit-Service-Rule",
+  "bin": {
+    "agendash": "bin/agendash-standalone.js"
   },
   "bugs": {
-    "url": "https://github.com/agenda/agendash/issues"
+    "url": "https://github.com/joeframbach/agendash/issues"
   },
-  "homepage": "https://github.com/agenda/agendash#readme",
-  "license": "MIT",
   "dependencies": {
-    "agenda": "^2.0.0",
-    "async": "^2.6.0",
+    "agenda": ">=0.7.0 <1.0.0",
+    "async": "^1.0.0",
     "body-parser": "^1.15.0",
     "commander": "^2.9.0",
     "express": "^4.0.0",
-    "hapi": "^17.5.1",
-    "inert": "^5.1.0",
     "semver": "^5.3.0"
   },
+  "description": "Agenda Dashboard",
   "devDependencies": {
-    "ava": "^0.25.0",
-    "npm-run-all": "^4.1.2",
-    "supertest": "^3.0.0",
-    "xo": "^0.18.2"
+    "mocha": "^3.1.2",
+    "supertest": "^2.0.0"
   },
-  "xo": {
-    "space": 2,
-    "rules": {
-      "space-before-function-paren": [
-        "error",
-        "never"
-      ],
-      "max-params": [
-        "error",
-        5
-      ],
-      "max-nested-callbacks": [
-        "error",
-        5
-      ]
-    },
-    "envs": [
-      "node"
-    ],
-    "ignores": [
-      "public/**/*"
-    ]
-  }
+  "engines": {
+    "node": ">=4.0.0",
+    "npm": ">=2.0.0"
+  },
+  "homepage": "https://github.com/joeframbach/agendash#readme",
+  "keywords": [
+    "agenda"
+  ],
+  "license": "MIT",
+  "main": "app.js",
+  "name": "agendash",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeframbach/agendash.git"
+  },
+  "scripts": {
+    "test": "$(npm bin)/mocha test/test.js"
+  },
+  "version": "0.4.0"
 }
