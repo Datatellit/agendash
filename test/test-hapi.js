@@ -1,14 +1,20 @@
 const test = require('ava');
 const supertest = require('supertest');
-const express = require('express');
+const Hapi = require('hapi');
 const Agenda = require('agenda');
 
 const agenda = new Agenda().database('mongodb://127.0.0.1/agendash-test-db', 'agendash-test-collection');
 
-const app = express();
-app.use('/', require('./app')(agenda));
+const server = Hapi.server({
+  port: 3000,
+  host: 'localhost'
+});
+server.register(require('inert'));
+server.register(require('../app')(agenda, {
+  middleware: 'hapi'
+}));
 
-const request = supertest(app);
+const request = supertest(server.listener);
 
 test.before.cb(t => {
   agenda.on('ready', () => {
@@ -48,12 +54,15 @@ test.serial('POST /api/jobs/create should confirm the job exists', async t => {
 });
 
 test.serial('POST /api/jobs/delete should delete the job', async t => {
-  const job = await new Promise(resolve => {
+  const job = await new Promise((resolve, reject) => {
     agenda.create('Test Job', {})
     .schedule('in 4 minutes')
-    .save(async (err, job) => {
-      t.ifError(err);
-      return resolve(job);
+    .save()
+    .then(job => {
+      resolve(job);
+    })
+    .catch(err => {
+      reject(err);
     });
   });
 
@@ -70,12 +79,15 @@ test.serial('POST /api/jobs/delete should delete the job', async t => {
 });
 
 test.serial('POST /api/jobs/requeue should requeue the job', async t => {
-  const job = await new Promise(resolve => {
+  const job = await new Promise((resolve, reject) => {
     agenda.create('Test Job', {})
     .schedule('in 4 minutes')
-    .save(async (err, job) => {
-      t.ifError(err);
-      return resolve(job);
+    .save()
+    .then(job => {
+      resolve(job);
+    })
+    .catch(err => {
+      reject(err);
     });
   });
 

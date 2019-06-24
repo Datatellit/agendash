@@ -1,9 +1,7 @@
 # Agendash
-[![Build Status](https://travis-ci.org/agenda/agendash.svg)](https://travis-ci.org/agenda/agendash)
-<a href="https://slackin-ekwifvcwbr.now.sh/"><img src="https://slackin-ekwifvcwbr.now.sh/badge.svg" alt="Slack Status"></a>
-[![Known Vulnerabilities](https://snyk.io/test/github/agenda/agendash/badge.svg?targetFile=package.json)](https://snyk.io/test/github/agenda/agendash?targetFile=package.json)
+[![Build Status](https://travis-ci.org/joeframbach/agendash.svg)](https://travis-ci.org/joeframbach/agendash)
 
-A Dashboard for [Agenda](https://github.com/agenda/agenda)
+A Dashboard for [Agenda](https://github.com/rschmukler/agenda)
 
 ---
 
@@ -53,17 +51,9 @@ or like this, for default collection `agendaJobs` and default port `3000`:
 ./node_modules/.bin/agendash --db=mongodb://localhost/agendaDb
 ```
 
-If you are using npm >= 5.2, then you can use [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b):
-
-```bash
-npx agendash --db=mongodb://localhost/agendaDb --collection=agendaCollection --port=3001
-```
-
 ### Middleware usage
 
-Agendash provides Express middleware you can use at a specified path, for example this will
-make Agendash available on your site at the `/dash` path. Note: Do not try to mount Agendash
-at the root level like `app.use('/', Agendash(agenda))`.
+Agendash provides Express middleware you can use at a specified path, for example this will 
 
 ```js
 var express = require('express');
@@ -74,44 +64,22 @@ var app = express();
 var Agenda = require('agenda');
 var Agendash = require('agendash');
 
-var agenda = new Agenda({db: {address: 'mongodb://127.0.0.1/agendaDb'}});
-// or provide your own mongo client:
-// var agenda = new Agenda({mongo: myMongoClient})
-
-app.use('/dash', Agendash(agenda));
+var agenda = new Agenda({mongo: 'mongodb://127.0.0.1/agendaDb'});
+app.use('/agendash', Agendash(agenda));
 
 // ... your other routes
 
 // ... start your server
 ```
 
-By mounting Agendash as middleware on a specific path, you may provide your
-own authentication for that path. For example if you have an authenticated
-session using passport, you can protect the dashboard path like this:
-
-```
-app.use('/dash',
-  function (req, res, next) {
-    if (!req.user || !req.user.is_admin) {
-      res.send(401);
-    } else {
-      next();
-    }
-  },
-  Agendash(agenda)
-);
-```
-
 Other middlewares will come soon in the folder `/lib/middlewares/`.
-You'll just have to update the last line to require the middleware you need:
+You'll just have to update the last line to require the middleware you need: 
 
 ```js
 app.use('/agendash', Agendash(agenda, {
   middleware: 'koa'
 }));
 ```
-
-Note that if you use a CSRF protection middleware like [`csurf`](https://www.npmjs.com/package/csurf), you might need to [configure it off](https://github.com/agenda/agendash/issues/23#issuecomment-270917949) for Agendash-routes.
 
 ### Additional options
 

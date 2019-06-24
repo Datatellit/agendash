@@ -1,14 +1,3 @@
-Next
-====
-
-* Update dependencies (#69, #70) (**BREAKING**)
-  * Agenda `>=0.7.0 <1.0.0` → `^1.0.3` and thus require MongoDB v3+
-  * async `^1.0.0` → `^2.6.0`
-* Drop support for Node.js v4 and v5 (might still work but we're stopping testing these) (**BREAKING**)
-* Switch testing with Mocha to [Ava](https://www.npmjs.com/package/ava) (#70)
-* Docker support (#54) by WoLfulus
-* Fix 404 errors when deleting and re-queuing jobs (#61) by koresar
-
 0.4.0 / 2016-10-27
 ==================
 
@@ -73,7 +62,7 @@ Next
   * version bump so npm will update docs
   * Added screenshots
 
-0.0.1 / 2016-02-23
+0.0.1 / 2016-02-23 
 ==================
 
   * Initial Release
